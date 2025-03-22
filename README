@@ -1,0 +1,99 @@
+Partner’s Names and NetIDs:
+Noah Cameron -> nwc21
+Sina Hazeghi -> skh79
+
+Brief Summary:
+Our goal in this project was to create a functional shell, similar to the command prompt in your average computer. We simulated a shell using C posix library functions.
+
+Extensions Implemented:
+-HOME Directory
+-Multiple Pipes
+
+Test Plan:
+Simple Functions
+Echo (built-in): As one of the simpler functions, this one was easy to test. First, we tested lines like “echo hello” to make sure exactly what we typed was printed. Then we tried more complex usages, like using echo in conjunction with “>” tokens, to print what we echo in another file
+ls(built in): This simple function was easy to test. We would use cd to open a directory, or sometimes we wouldn’t cd into anything at all and see if it would list all the current files
+cd: to test cd, we would open a file, such as “testfold1”, then we would use pwd and ls to make sure it was acting as it should. If we did “cd testfold1”, and then did “pwd” and testfold1 wasn’t part of the working directory, then we knew something was wrong. In addition, we made sure cd could catch files that did NOT exist and refrain from adding them to the working directory
+pwd: To test to make sure “print working directory” does what is supposed to do, we decided to use
+Others but most are built in
+More Complex Functions
+| : testing pipe was much more complex than any of the basic functions. We tested it with lines like the ones you'll see below
+<: used to change standard input to another file
+
+> : tested by creating empty text files and setting an executables output to said files
+
+Testing Batch vs Interactive
+
+> Batch: We used a text file called “BashTest.txt” to check to make sure our shell could work in batch mode. This file consisted of a call to ls with the -l modification, as well as the commands from the cat file and foo. Then it makes a call to cd ../.. And prints the working directory
+> Interactive: We tested this mode using a variety of functions. Some were the ones mentioned above like echo, cd, ls, and pwd. In addition, we used the names of executable files that were both in the working directory, as well as ones in the folders bin, bash, local, sbin, usr, and others.
+
+Testing the Extensions:
+
+> Home Directory: My Ilab machine contains a folder called shellProject, so I first did cd and nothing else to set the home directory, then did ~/shellProject/executable_name to see if it run the executable properly, which it did’
+> Multiple Pipes: We tested our ability to use multiple pipes by entering lines like
+
+Some Sample Lines we used to test various functions:
+
+testWild c\*txt > printHere.txt
+Result: printed “I love mac and cheese” in the printHere.txt file
+
+echo green day > print2.txt
+Result: printed “green day” in the print2.txt file
+
+test < barcat
+Result: uses barcat line 1 as the input for test and prints “Please enter text: You entered SUCCESS”
+
+mkdir newDirectory
+Result: created a new directory with the name newDirectory
+
+cat barcat | ./test
+This set the input for test.c to the first line of the barcat file and printed “Please Enter text: you entered SUCCESS”, showing that it generated standard input without the user typing anything into standard input
+
+rmdir dir | cat barcat | ./test
+This created a new directory and printed the same code as the previous example
+
+If we do:
+cd
+~/Project_2/test should prompt the user to enter some text
+
+Batch: (in terminal)
+When BashText is:
+ls -l
+cat foo
+cd ../..
+Pwd
+
+./a.out BashTest.txt prints
+total 177
+-rwxr-x--- 1 nwc21 nwc21 27848 Mar 29 19:37 a.out
+-rwxr-x--- 1 nwc21 nwc21 27168 Mar 29 15:42 balls
+-rw-r----- 1 nwc21 nwc21 537 Mar 29 20:51 bar
+-rwxr-x--- 1 nwc21 nwc21 21 Mar 29 20:51 barcat
+-rw-r----- 1 nwc21 nwc21 26 Mar 29 16:51 BashTest.txt
+-rw-r----- 1 nwc21 nwc21 10 Mar 29 19:05 beef.txt
+drwxr-x--- 2 nwc21 nwc21 4 Mar 28 14:01 bin
+-rw-r----- 1 nwc21 nwc21 10 Mar 29 19:05 broc.txt
+-rw-r----- 1 nwc21 nwc21 22360 Mar 29 19:38 fixed.c
+-rw-r----- 1 nwc21 nwc21 537 Mar 28 21:52 foo
+-rwxr-x--- 1 nwc21 nwc21 16840 Mar 29 20:44 hello
+-rw-r----- 1 nwc21 nwc21 194 Mar 29 20:44 hello.c
+-rw-r----- 1 nwc21 nwc21 168 Mar 29 19:47 Makefile
+-rwxr-x--- 1 nwc21 nwc21 64224 Mar 29 20:24 mysh
+-rw-r----- 1 nwc21 nwc21 22354 Mar 29 20:07 mysh.c
+-rw-r----- 1 nwc21 nwc21 22 Mar 29 20:31 printHere.txt
+drwxr-x--- 2 nwc21 nwc21 2 Mar 28 15:28 sbin
+-rw-r----- 1 nwc21 nwc21 51905 Mar 29 20:41 test
+-rwxr-x--- 1 nwc21 nwc21 19592 Mar 29 19:02 testWild
+-rw-r----- 1 nwc21 nwc21 598 Mar 29 18:59 testWild.c
+-rw-r----- 1 nwc21 nwc21 7024 Mar 29 19:02 testWild.o
+drwxr-x--- 5 nwc21 nwc21 5 Mar 28 15:28 usr
+total 312
+-rw-r--r--@ 1 shazeghi staff 1809 Mar 25 11:40 ExtraCode.txt
+-rw-r--r-- 1 shazeghi staff 174 Mar 27 10:06 Makefile
+-rw-r--r-- 1 shazeghi staff 1 Mar 27 10:40 foo
+-rwxr-xr-x 1 shazeghi staff 60769 Mar 27 15:33 mysh
+-rw-r--r-- 1 shazeghi staff 12526 Mar 27 15:33 mysh.c
+drwxr-xr-x 3 shazeghi staff 96 Mar 17 13:12 mysh.dSYM
+-rwxr-xr-x 1 shazeghi staff 51905 Mar 27 10:06 test
+drwxr-xr-x 3 shazeghi staff 96 Mar 27 10:06 test.dSYM
+-rw-r--r-- 1 shazeghi staff 199 Mar 27 10:05 testProgram.cthe working directory is: /common/home

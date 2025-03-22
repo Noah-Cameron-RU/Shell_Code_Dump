@@ -1,0 +1,4 @@
+ls -l
+cat foo
+cd ../..
+pwd
